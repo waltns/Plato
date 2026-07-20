@@ -1,16 +1,58 @@
 {
   "name": "plato",
+  "productName": "Plato",
   "version": "1.0.0",
-  "description": "",
+  "description": "Plato Desktop",
   "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "keywords": [],
-  "author": "",
+  "author": "waltns",
   "license": "ISC",
   "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
   "devDependencies": {
-    "electron": "^38.0.0"
+    "electron": "^38.1.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.plato.desktop",
+    "productName": "Plato",
+    "artifactName": "${productName}-${version}-${os}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!node_modules/.cache/**",
+      "!.git/**",
+      "!.github/**",
+      "!README.md"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Plato"
+    }
   }
 }
